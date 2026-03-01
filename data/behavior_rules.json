@@ -1,0 +1,127 @@
+{
+  "actions": [
+    {
+      "id": "SHARE_CODE",
+      "keywords": ["verification code", "send me the verification code", "send me the code", "share the code", "otp", "one time password", "verification code please", "what is the verification code"],
+      "recoverability": "IRREVERSIBLE",
+      "label": "Share verification code",
+      "severity": "high",
+      "explanation": {
+        "ask_line": "You are being asked to share a verification code, OTP, or one-time password.",
+        "tactic_line": "Scammers use codes to take over your accounts or approve unauthorized transactions.",
+        "outcome_line": "Once they have the code, they can empty your account or lock you out.",
+        "suggestion_line": "Never share codes with anyone. Real companies will never ask for them by text or email."
+      }
+    },
+    {
+      "id": "SEND_MONEY",
+      "keywords": ["transfer", "deposit", "send money", "wire", "wire transfer", "pay now", "transfer today", "deposit today", "urgent payment", "send funds", "pay asap"],
+      "recoverability": "IRREVERSIBLE",
+      "label": "Send money or transfer funds",
+      "severity": "high",
+      "explanation": {
+        "ask_line": "You are being asked to transfer money, make a deposit, or send funds.",
+        "tactic_line": "Scammers create urgency so you act before you can verify the request.",
+        "outcome_line": "Money sent to scammers is usually impossible to recover.",
+        "suggestion_line": "Verify any payment request through a known channel. Do not pay or transfer based on messages alone."
+      }
+    },
+    {
+      "id": "GRANT_ACCESS",
+      "keywords": ["grant access", "remote access", "let me in", "install teamviewer", "install anydesk", "click to allow", "give me access", "your boss", "as your manager", "as the ceo", "authorized by"],
+      "recoverability": "CONDITIONAL",
+      "label": "Grant access or follow authority",
+      "severity": "medium",
+      "explanation": {
+        "ask_line": "You are being asked to grant access, follow an order from authority, or install software so someone can control your device.",
+        "tactic_line": "Scammers pretend to be your boss or IT to get you to bypass normal security.",
+        "outcome_line": "They can steal files, lock your computer, or use your access to steal more.",
+        "suggestion_line": "Confirm requests through official channels. Do not install remote-access software or share access based on a message."
+      }
+    },
+    {
+      "id": "CLICK_LINK",
+      "keywords": ["check this link", "click this link", "open this link", "click here", "follow this link", "verify your account", "confirm here", "click to verify"],
+      "recoverability": "CONDITIONAL",
+      "label": "Click a link",
+      "severity": "medium",
+      "explanation": {
+        "ask_line": "You are being asked to click a link, often to verify an account or view something.",
+        "tactic_line": "Scammers use links to steal passwords or install malware.",
+        "outcome_line": "The site may look real but capture your login or infect your device.",
+        "suggestion_line": "Type the company URL yourself or use a bookmark. Do not click links in unexpected messages."
+      }
+    },
+    {
+      "id": "DOWNLOAD",
+      "keywords": ["download", "download this", "install this", "open the attachment", "run the file", "download the file"],
+      "recoverability": "CONDITIONAL",
+      "label": "Download or run a file",
+      "severity": "medium",
+      "explanation": {
+        "ask_line": "You are being asked to download or run a file or attachment.",
+        "tactic_line": "Scammers use files to install malware that steals data or locks your device.",
+        "outcome_line": "Opening the file can give them full control of your computer.",
+        "suggestion_line": "Do not open attachments or downloads from unexpected senders. Verify with the sender through another channel."
+      }
+    },
+    {
+      "id": "MAKE_COMMITMENT",
+      "keywords": ["commitment_confirmation"],
+      "recoverability": "REVERSIBLE",
+      "label": "Make commitment",
+      "severity": "medium",
+      "explanation": {
+        "ask_line": "You are committing to an action or availability.",
+        "tactic_line": "People often agree quickly in conversations without checking conflicts.",
+        "outcome_line": "This can cause missed obligations or reputational damage.",
+        "suggestion_line": "Verify your schedule or ability before confirming."
+      }
+    }
+  ],
+  "persuasion": [
+    {
+      "id": "urgency",
+      "keywords": ["urgent", "asap", "immediately", "right now", "within minutes", "before it expires", "last chance", "act now", "don't wait", "time sensitive"],
+      "label": "Uses urgency"
+    },
+    {
+      "id": "authority",
+      "keywords": ["boss", "manager", "ceo", "hr", "it department", "official", "from your bank", "irs", "government", "support team"],
+      "label": "Appeals to authority"
+    },
+    {
+      "id": "fear",
+      "keywords": ["account suspended", "locked out", "legal action", "arrest", "lawsuit", "lose your account", "penalty", "fined"],
+      "label": "Uses fear"
+    },
+    {
+      "id": "scarcity",
+      "keywords": ["limited time", "only today", "exclusive", "few left", "last one", "one time offer", "before it's gone"],
+      "label": "Creates scarcity"
+    },
+    {
+      "id": "familiarity",
+      "keywords": ["hi it's me", "this is your", "remember me", "we met at", "your friend", "your colleague"],
+      "label": "Fakes familiarity"
+    }
+  ],
+  "default_action": {
+    "id": "UNKNOWN",
+    "recoverability": "REVERSIBLE",
+    "label": "No specific risky action detected",
+    "severity": "low",
+    "explanation": {
+      "ask_line": "This message does not clearly ask you to do a specific risky action.",
+      "tactic_line": "Many scams rely on urgency, fake authority, or emotional pressure.",
+      "outcome_line": "Staying cautious with unexpected messages helps avoid harm.",
+      "suggestion_line": "If something feels off, verify through a known contact or official channel before acting."
+    }
+  },
+  "example_dataset": [
+    { "input": "send me the verification code", "expected_risk": "HIGH" },
+    { "input": "transfer deposit today", "expected_risk": "HIGH" },
+    { "input": "check this link", "expected_risk": "MEDIUM" },
+    { "input": "hello how are you", "expected_risk": "LOW" }
+  ]
+}

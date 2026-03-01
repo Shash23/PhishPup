@@ -1,0 +1,261 @@
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.context-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.context-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.context-input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.message-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.message-input:focus {
+  outline: none;
+  border-color: #333;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.example-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.example-btn {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid #888;
+  border-radius: 6px;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.example-btn:hover {
+  background: #eee;
+  border-color: #555;
+}
+
+.analyze-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.analyze-btn:hover:not(:disabled) {
+  background: #555;
+}
+
+.analyze-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.recipients-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.recipients-input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.send-btn {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.send-btn:hover {
+  background: #f5f5f5;
+}
+
+.sent-banner {
+  padding: 1rem 1.25rem;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.compose-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.compose-btn:hover {
+  background: #555;
+}
+
+.status {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.error {
+  margin: 0;
+  color: #c00;
+  font-size: 0.9rem;
+}
+
+/* Result card: LOW green, MEDIUM yellow, HIGH red */
+.result-card {
+  margin-top: 1rem;
+  padding: 1.25rem;
+  border-radius: 8px;
+  border-width: 3px;
+  border-style: solid;
+  text-align: left;
+}
+
+.result-card.low {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.result-card.medium {
+  border-color: #eab308;
+  background: #fefce8;
+}
+
+.result-card.high {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.result-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+}
+
+.result-dl {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+}
+
+.result-dl dt {
+  font-weight: 600;
+  margin-top: 0.5rem;
+  color: #374151;
+}
+
+.result-dl dt:first-child {
+  margin-top: 0;
+}
+
+.result-dl dd {
+  margin: 0.25rem 0 0 0;
+}
+
+.result-explanation h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.explanation-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.understood-context {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.context-tailor-msg {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  color: #4b5563;
+  font-style: italic;
+}
+
+.understood-context h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
