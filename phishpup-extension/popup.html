@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PhishPup</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <h1>PhishPup</h1>
+    <p class="subtitle">Check before you send</p>
+  </header>
+
+  <div class="card">
+    <div id="statusBadge" class="status-badge risk-none"></div>
+    <p id="summaryText" class="summary"></p>
+    <p id="explanationText" class="explanation"></p>
+  </div>
+
+  <button id="check">Check Email</button>
+  <button id="toggleDetails">Show Details</button>
+
+  <div id="detailsSection" class="details-section">
+    <h4>Draft Detected</h4>
+    <pre id="draftBox"></pre>
+    <h4>Conversation Detected</h4>
+    <pre id="conversationBox"></pre>
+    <h4>Raw Analysis</h4>
+    <pre id="detailsRaw"></pre>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

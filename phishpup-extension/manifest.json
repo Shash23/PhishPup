@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "PhishPup",
+  "version": "1.0",
+  "description": "Send-time decision verification for email",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "http://localhost:8000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

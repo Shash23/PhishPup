@@ -1,85 +1,71 @@
+Replace the contents of README.md with the following:
+
 # PhishPup
 
 ## Overview
 
-PhishPup is a **decision‑verification assistant for communication**.
+PhishPup is a send-time decision verification assistant for email communication.
 
-Before you send a message, PhishPup explains what your message *does in the real world* — not just what it says.
+The system evaluates the real-world consequences of a message before it is sent. It does not block messages and does not classify conversations as scams. Instead, it analyzes the action performed by the message and provides a structured decision report.
 
-It does not block you.
-It does not replace you.
-It helps you make an informed decision.
+PhishPup functions as a consequence validation layer comparable to how spell-check validates text.
 
-Think of it as spell‑check for consequences instead of words.
+The application runs as a local web interface for development and as a Chrome extension integrated with Gmail for the primary user experience.
 
 ---
 
-## The Problem
+## Problem
 
-Modern communication tools optimize speed, but many actions inside conversations are irreversible:
+Digital communication tools prioritize speed while many actions performed within conversations are irreversible. Common issues include:
 
-* sharing verification codes
-* sending private information externally
-* agreeing to commitments you can’t fulfill
-* approving requests under pressure
+* sharing authentication codes or credentials
+* sending sensitive information externally
+* agreeing to commitments without verification
+* approving requests under urgency or authority pressure
 
-Most digital mistakes are not hacks — they are rushed human decisions.
+Many security and operational incidents originate from human decisions rather than system compromise. Current communication platforms do not validate the consequences of outgoing messages.
 
-Software validates data before storing it.
-Humans send irreversible messages with zero validation.
-
-**PhishPup adds a decision checkpoint before sending.**
+PhishPup introduces a decision checkpoint prior to message transmission.
 
 ---
 
-## Core Idea
+## Core Concept
 
-PhishPup does not classify messages or detect scams.
+PhishPup evaluates the action a message performs rather than attempting to detect scams.
 
-It evaluates the *action* a message performs.
+Primary question:
 
-It answers:
+If this message is sent, what action occurs and what consequence follows?
 
-> If this message is sent, what happens next?
+The analysis considers four dimensions:
 
-The system analyzes four dimensions:
+* Intent: the action expressed in the message
+* Context: prior conversation content
+* Destination: message recipients
+* Payload: information being transmitted
 
-* **Intent** — what the user is about to do
-* **Context** — what has already been said
-* **Destination** — who receives the action
-* **Payload** — what information leaves
-
-It then returns a decision report instead of a probability score.
+The system produces a deterministic decision report rather than a probability score.
 
 ---
 
-## Optional AI Context Understanding
+## Context Understanding
 
-Users can optionally describe the situation:
+An optional AI layer converts a user-provided situation description into structured context including category, sensitivity, and focus areas.
 
-> “This is a recruiter scheduling an interview”
-> “This is IT support asking for login help”
+The AI component does not determine safety outcomes. Final decisions are produced exclusively by the deterministic reasoning engine.
 
-An LLM converts that description into structured context (category, sensitivity, focus areas).
-
-Important:
-The AI **does not decide safety**.
-The deterministic engine makes the final decision.
-
-AI understands context.
-Rules enforce consequences.
+AI provides semantic understanding. Rules enforce consistent consequences.
 
 ---
 
-## Workflow
+## User Workflow (Gmail Extension)
 
-1. Write your message
-2. (Optional) describe the situation
-3. Click **Check Email**
-4. Review consequences
-5. Choose to send or edit
-
-PhishPup advises — the human decides.
+1. Compose an email in Gmail
+2. Open the PhishPup extension
+3. Optionally describe the communication context
+4. Select Check Email
+5. Review the generated decision report
+6. Send or modify the message
 
 ---
 
@@ -87,42 +73,46 @@ PhishPup advises — the human decides.
 
 PhishPup returns one of three outcomes:
 
-**SAFE**
-Message appears consistent with context
+SAFE
+The message appears consistent with context.
 
-**CHECK**
-Something may be wrong — review before sending
+CHECK
+The message may contain a potential issue requiring review.
 
-**STOP_VERIFY**
-This action may cause irreversible consequences
+STOP_VERIFY
+The message may cause irreversible consequences and should be verified through an independent channel.
 
-No probabilities. No hallucinations. Deterministic results.
+Results are deterministic and reproducible.
 
 ---
 
 ## Example
 
 Message:
-"Here is the verification code: 482193"
+Here is the verification code: 482193
 
 Result:
 STOP_VERIFY
-You are transferring account access
-The request creates urgency
-This action cannot be undone
-Verify inside the official application instead
+Account access transfer is being performed
+The request exhibits urgency
+The action is irreversible
+Verification should occur through the official application
 
 ---
 
 ## Architecture
 
-Frontend: React
-Backend: FastAPI
-Engine: Deterministic rule‑based reasoning
-AI Layer: Optional context interpreter
+Frontend: React demonstration interface
+Backend: FastAPI service
+Engine: deterministic rule-based reasoning system
+AI layer: optional context interpreter
+Integration: Chrome extension for Gmail
 
-API:
+### API
+
 POST /analyze
+
+Request:
 {
 conversation: string,
 draft: string,
@@ -134,82 +124,45 @@ interpreted_context: object
 }
 }
 
-Returns:
-
-* status
-* commitment
-* consequence
-* reason
-* recommendation
-* context_used
-* destination_count
-
-No database
-No authentication
-Works without API keys
-
 ---
 
 ## Reasoning Engine
 
-Pipeline:
+Processing pipeline:
 
 1. Extract intended action
 2. Detect persuasion signals
-3. Evaluate reversibility
-4. Simulate post‑send outcome
-5. Produce explanation
+3. Evaluate recoverability
+4. Determine outcome severity
+5. Produce structured explanation
 
-Identical input always produces identical output.
-
-Reliability matters more than guesswork near a send button.
+Identical inputs always produce identical outputs.
 
 ---
 
 ## Running Locally
 
-### Development (hot reload)
-
-**Terminal 1 — backend:**
-```bash
+Backend:
 uvicorn main:app --reload
-```
 
-**Terminal 2 — frontend:**
-```bash
+Frontend demo:
 cd frontend
 npm run dev
-```
 
-Open: [http://localhost:5173](http://localhost:5173)
-
-The browser talks to the Vite dev server; Vite proxies `/analyze`, `/interpret_context`, and `/health` to the FastAPI backend. Frontend changes hot reload without rebuilding.
-
-### Production (single server)
-
-```bash
-cd frontend
-npm install --cache .npm-cache
-npm run build
-cd ..
-ENV=prod uvicorn main:app
-```
-
-Open: [http://localhost:8000](http://localhost:8000)
+Chrome extension:
+Load the phishpup-extension directory using chrome://extensions developer mode.
 
 ---
 
 ## Future Direction
 
-* Gmail send‑time verification
-* Chat integrations
+* automatic send interception
 * attachment awareness
-* calendar‑aware commitments
-
-Goal: a universal safety layer for human decisions in software.
+* calendar-aware commitments
+* messaging platform integrations
 
 ---
 
-## One‑line pitch
+## Summary
 
-PhishPup checks the consequences of your message before you send it.
+PhishPup provides deterministic verification of communication actions prior to transmission.
