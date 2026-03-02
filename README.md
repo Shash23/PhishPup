@@ -112,5 +112,3 @@ No auth required for the demo.
 ---
 
 **CanaryGate** — Safety for communication. No surveillance.
-
-*Built for [Your Hackathon Name].*
