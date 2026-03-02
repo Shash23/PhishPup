@@ -94,13 +94,6 @@ Open **http://localhost:5173** — log in as **Employee** or **Manager** (no pas
 
 No auth required for the demo.
 
----
-
-## Screenshots
-
-*Add a screenshot of the landing page, extension popup, and manager dashboard here for maximum hackathon impact.*
-
----
 
 ## What’s next
 
